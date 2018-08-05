@@ -5,16 +5,17 @@ import java.io.Serializable;
 public class JwtAuthenticationRequest implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	
 	private String email;
-    private String senha;
+    private String password;
 
     public JwtAuthenticationRequest() {
         super();
     }
 
-    public JwtAuthenticationRequest(String email, String senha) {
+    public JwtAuthenticationRequest(String email, String password) {
         this.setEmail(email);
-        this.setSenha(senha);
+        this.setPassword(password);
     }
 
 	public String getEmail() {
@@ -25,17 +26,15 @@ public class JwtAuthenticationRequest implements Serializable {
 		this.email = email;
 	}
 
-	public String getSenha() {
-		return senha;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
+    
+	
     
 }

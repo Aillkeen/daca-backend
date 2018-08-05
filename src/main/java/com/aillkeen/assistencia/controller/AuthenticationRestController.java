@@ -42,26 +42,26 @@ public class AuthenticationRestController {
 		final Authentication authentication = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(
 						authenticationRequest.getEmail(),
-						authenticationRequest.getSenha()
+						authenticationRequest.getPassword()
 						)
 				);
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getEmail());
 		final String token = jwtTokenUtil.generateToken(userDetails);
-		final Usuario user = usuarioService.findByEmail(authenticationRequest.getEmail());
-		user.setSenha(null);
-		return ResponseEntity.ok(new CurrentUser(token, user));
+		final Usuario usuario = usuarioService.findByEmail(authenticationRequest.getEmail());
+		usuario.setSenha(null);
+		return ResponseEntity.ok(new CurrentUser(token, usuario));
 	}
 
 	@PostMapping(value="/assistencia/refresh")
 	public ResponseEntity<?> refreshAndGetAuthenticationToken(HttpServletRequest request) {
 		String token = request.getHeader("Authorization");
-		String username = jwtTokenUtil.getUsernameFromToken(token);
-		final Usuario user = usuarioService.findByEmail(username);
+		String email = jwtTokenUtil.getUsernameFromToken(token);
+		final Usuario usuario = usuarioService.findByEmail(email);
 
 		if (jwtTokenUtil.canTokenBeRefreshed(token)) {
 			String refreshedToken = jwtTokenUtil.refreshToken(token);
-			return ResponseEntity.ok(new CurrentUser(refreshedToken, user));
+			return ResponseEntity.ok(new CurrentUser(refreshedToken, usuario));
 		} else {
 			return ResponseEntity.badRequest().body(null);
 		}
