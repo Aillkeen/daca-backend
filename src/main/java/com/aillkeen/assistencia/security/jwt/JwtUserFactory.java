@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
-import com.aillkeen.assistencia.entity.Grupo;
+import com.aillkeen.assistencia.entity.Papel;
 import com.aillkeen.assistencia.entity.Usuario;
 
 public class JwtUserFactory {
@@ -19,11 +19,11 @@ public class JwtUserFactory {
         		usuario.getId(),
         		usuario.getEmail(),
                 usuario.getSenha(),
-                mapToGrantedAuthorities(usuario.getGrupo())
+                mapToGrantedAuthorities(usuario.getPapel())
         );
     }
 
-    private static List<GrantedAuthority> mapToGrantedAuthorities(Grupo grupo) {
+    private static List<GrantedAuthority> mapToGrantedAuthorities(Papel grupo) {
     		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>(); 
     		authorities.add(new SimpleGrantedAuthority(grupo.toString())); 
     		return authorities;

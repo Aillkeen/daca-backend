@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.aillkeen.assistencia.entity.Grupo;
+import com.aillkeen.assistencia.entity.Papel;
 import com.aillkeen.assistencia.entity.Usuario;
 import com.aillkeen.assistencia.repository.UsuarioRepository;
 
@@ -29,7 +29,7 @@ public class AssistenciaApplication {
 			Usuario admin = new Usuario();
 	        admin.setEmail("admin@assistencia.com");
 	        admin.setSenha(passwordEncoder.encode("123456"));	
-	        admin.setGrupo(Grupo.ADMIN);
+	        admin.setPapel(Papel.ROLE_PROFESSOR);
 
 	        Usuario find = userRepository.findByEmail("admin@assistencia.com");
 	        if (find == null) {

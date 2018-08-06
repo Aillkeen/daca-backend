@@ -62,7 +62,4 @@ public class Historico {
 		this.status = status;
 	}
 	
-	
-	
-	
 }

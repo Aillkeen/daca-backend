@@ -23,7 +23,7 @@ public class Usuario {
 	@Size(min = 6)
 	private String senha;
 	
-	private Grupo grupo;
+	private Papel papel;
 
 	public String getId() {
 		return id;
@@ -49,12 +49,12 @@ public class Usuario {
 		this.senha = senha;
 	}
 
-	public Grupo getGrupo() {
-		return grupo;
+	public Papel getPapel() {
+		return papel;
 	}
 
-	public void setGrupo(Grupo grupo) {
-		this.grupo = grupo;
+	public void setPapel(Papel papel) {
+		this.papel = papel;
 	}
 
 	@Override
@@ -62,7 +62,7 @@ public class Usuario {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + ((grupo == null) ? 0 : grupo.hashCode());
+		result = prime * result + ((papel == null) ? 0 : papel.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((senha == null) ? 0 : senha.hashCode());
 		return result;
@@ -82,7 +82,7 @@ public class Usuario {
 				return false;
 		} else if (!email.equals(other.email))
 			return false;
-		if (grupo != other.grupo)
+		if (papel != other.papel)
 			return false;
 		if (id == null) {
 			if (other.id != null)

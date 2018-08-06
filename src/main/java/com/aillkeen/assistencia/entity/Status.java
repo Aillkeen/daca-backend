@@ -13,7 +13,7 @@ public enum Status {
 
 	}
 
-	public Status getStatus(String status) {
+	public static Status getStatus(String status) {
 		
 		switch(status.trim().toLowerCase()) {
 			case "aberto": return ABERTO;
