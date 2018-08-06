@@ -25,7 +25,7 @@ public class SimpleCORSFilter implements Filter{
 
 	@Override
 	public void init(FilterConfig fc) throws ServletException {
-		logger.info("Assistencia | SimpleCORSFilter loaded");
+		logger.info("Duvida | SimpleCORSFilter loaded");
 	}
 
 	@Override
