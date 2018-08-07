@@ -15,7 +15,7 @@ public interface DuvidaService {
 
 	void delete(String id);
 
-	Page<Duvida> listAssistencia(int page, int count);
+	Page<Duvida> listDuvida(int page, int count);
 
 	Historico createHistorico(Historico historico);
 

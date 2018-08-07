@@ -57,7 +57,7 @@ public class DuvidaController {
 		Response<Duvida> response = new Response<Duvida>();
 		
 		try {
-			validateCreateAssistencia(duvida, result);
+			validateCreateDuvida(duvida, result);
 			if (result.hasErrors()) {
 				result.getAllErrors().forEach(error -> response.getErros().add(error.getDefaultMessage()));
 				return ResponseEntity.badRequest().body(response);
@@ -75,9 +75,9 @@ public class DuvidaController {
 		return ResponseEntity.ok(response);
 	}
 
-	private void validateCreateAssistencia(Duvida duvida, BindingResult result) {
+	private void validateCreateDuvida(Duvida duvida, BindingResult result) {
 		if (duvida.getTitulo() == null) {
-			result.addError(new ObjectError("Assistencia", "Titulo da duvida nao informado."));
+			result.addError(new ObjectError("Duvida", "Titulo da duvida nao informado."));
 			return;
 		}
 	}
@@ -99,7 +99,7 @@ public class DuvidaController {
 			BindingResult result) {
 		Response<Duvida> response = new Response<Duvida>();
 		try {
-			validateUpdateAssistencia(duvida, result);
+			validateUpdateDuvida(duvida, result);
 			if (result.hasErrors()) {
 				result.getAllErrors().forEach(error -> response.getErros().add(error.getDefaultMessage()));
 				return ResponseEntity.badRequest().body(response);
@@ -121,13 +121,13 @@ public class DuvidaController {
 		return ResponseEntity.ok(response);
 	}
 
-	private void validateUpdateAssistencia(Duvida duvida, BindingResult result) {
+	private void validateUpdateDuvida(Duvida duvida, BindingResult result) {
 		if (duvida.getId() == null) {
-			result.addError(new ObjectError("Assistencia", "Id da duvida nao encontrado."));
+			result.addError(new ObjectError("Duvida", "Id da duvida nao encontrado."));
 			return;
 		}
 		if (duvida.getTitulo() == null) {
-			result.addError(new ObjectError("Assistencia", "Titulo da duvida nao informado"));
+			result.addError(new ObjectError("Duvida", "Titulo da duvida nao informado"));
 			return;
 		}
 	}
@@ -139,7 +139,7 @@ public class DuvidaController {
 		Response<Duvida> response = new Response<Duvida>();
 		Duvida duvida = duvidaService.findById(id);
 		if (duvida == null) {
-			response.getErros().add("Assistencia nao encontrada com id: " + id);
+			response.getErros().add("Duvida nao encontrada com id: " + id);
 			return ResponseEntity.badRequest().body(response);
 		}
 		List<Historico> historicos = new ArrayList<Historico>();
@@ -176,7 +176,7 @@ public class DuvidaController {
 		Page<Duvida> duvidas = null;
 		Usuario usuarioRequest = userFromRequest(request);
 		if(usuarioRequest.getPapel().equals(Papel.ROLE_TUTOR)) {
-			duvidas = duvidaService.listAssistencia(page, count);
+			duvidas = duvidaService.listDuvida(page, count);
 		} else if(usuarioRequest.getPapel().equals(Papel.ROLE_ALUNO)) {
 			duvidas = duvidaService.findByCurrentUser(page, count, usuarioRequest.getId());
 		}
@@ -255,11 +255,11 @@ public class DuvidaController {
 	
 	private void validateHistorico(String id,String status, BindingResult result) {
 		if (id == null || id.equals("")) {
-			result.addError(new ObjectError("Assistencia", "Id nao encontrado"));
+			result.addError(new ObjectError("Duvida", "Id nao encontrado"));
 			return;
 		}
 		if (status == null || status.equals("")) {
-			result.addError(new ObjectError("Assistencia", "Status nao informado"));
+			result.addError(new ObjectError("Duvida", "Status nao informado"));
 			return;
 		}
 	}

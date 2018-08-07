@@ -36,7 +36,7 @@ public class DuvidaServiceImpl implements DuvidaService {
 	}
 
 	@Override
-	public Page<Duvida> listAssistencia(int page, int count) {
+	public Page<Duvida> listDuvida(int page, int count) {
 		Pageable pages = new PageRequest(page, count);
 		return duvidaRepository.findAll(pages);
 	}
